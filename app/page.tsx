@@ -233,7 +233,7 @@ async function getJobs() {
 /* ===========================
    HOME PAGE
 =========================== */
-<meta name="google-site-verification" content="ZH5X-_lr8028WFHToifsL83PqtjE7exSdI7Dd-dzjiE" />
+
 export default async function HomePage() {
   const jobs = await getJobs();
 
