@@ -18,6 +18,8 @@ export const metadata: Metadata = {
   description:
     "Find latest government jobs, private jobs, admit cards, results, answer keys and notifications in one place.",
   viewport: "width=device-width, initial-scale=1",
+  verification: {
+    google: "ZH5X-_lr8028WFHToifsL83PqtjE7exSdI7Dd-dzjiE",
 };
 
 export default function RootLayout({
