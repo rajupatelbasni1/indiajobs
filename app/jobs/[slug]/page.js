@@ -200,7 +200,7 @@ import { notFound } from "next/navigation";
 =========================== */
 async function getJob(slug) {
   try {
-    const res = await fetch(`http://127.0.0.1:8000/posts/${slug}/`, {
+    const res = await fetch(`https://indiajobs-2.onrender.com/posts/${slug}/`, {
       cache: "no-store",
     });
 
