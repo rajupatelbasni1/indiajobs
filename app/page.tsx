@@ -199,7 +199,8 @@
 // }
 
 // FORCE dynamic render (important for fresh jobs)
-export const dynamic = "force-dynamic";
+
+// export const dynamic = "force-dynamic";
 
 /* ===========================
    FETCH JOBS FROM DJANGO
