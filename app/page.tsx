@@ -208,7 +208,7 @@
 =========================== */
 async function getJobs() {
   try {
-    const res = await fetch("http://127.0.0.1:8000/posts/", {
+    const res = await fetch("https://indiajobs-2.onrender.com/posts/", {
       cache: "no-store",
     });
 
