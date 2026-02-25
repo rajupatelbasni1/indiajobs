@@ -8,7 +8,7 @@ type Job = {
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
-  const baseUrl = "https://indiajobs.rajuptelbasnijutha.workers.dev";
+  const baseUrl = "https://indiajobs.co";
 
   // STATIC PAGES
   const staticPages: MetadataRoute.Sitemap = [

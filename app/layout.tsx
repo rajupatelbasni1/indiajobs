@@ -14,13 +14,38 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://indiajobs.co"),
   title: "IndiaJobs - Latest Govt & Private Jobs",
   description:
     "Find latest government jobs, private jobs, admit cards, results, answer keys and notifications in one place.",
   viewport: "width=device-width, initial-scale=1",
   verification: {
     google: "ZH5X-_lr8028WFHToifsL83PqtjE7exSdI7Dd-dzjiE",
-  }
+  },
+  keywords: [
+    "latest govt jobs",
+    "private jobs",
+    "sarkari result",
+    "indiajobs",
+    "railway jobs",
+    "ssc jobs",
+    "bank jobs",
+    "rajupatelbasni",
+  ],
+  openGraph: {
+    title: "IndiaJobs - Latest Govt & Private Jobs",
+    description:
+      "Find latest government jobs, private jobs, admit cards, results and notifications.",
+    url: "https://indiajobs.co",
+    siteName: "IndiaJobs",
+    locale: "en_IN",
+    type: "website",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+
 };
 
 export default function RootLayout({
