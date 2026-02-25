@@ -20,6 +20,7 @@ export const metadata: Metadata = {
   viewport: "width=device-width, initial-scale=1",
   verification: {
     google: "ZH5X-_lr8028WFHToifsL83PqtjE7exSdI7Dd-dzjiE",
+  }
 };
 
 export default function RootLayout({
