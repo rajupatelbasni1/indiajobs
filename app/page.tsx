@@ -364,11 +364,12 @@ export default async function HomePage() {
           </div>
 
           <div className="mt-10 text-sm text-gray-600">
-            <a href="#">About Us</a> |
-            <a href="#"> Contact Us</a> |
-            <a href="#"> Disclaimer</a> |
-            <a href="#"> DMCA</a> |
-            <a href="#"> Privacy Policy</a>
+            <a href="/about">About Us </a> |
+            <a href="/contact"> Contact Us</a> |
+            <a href="/disclaimer"> Disclaimer</a> |
+            <a href="/dmca"> DMCA</a> |
+            <a href="/privacy-policy"> Privacy Policy</a>
+            
           </div>
 
         </div>
