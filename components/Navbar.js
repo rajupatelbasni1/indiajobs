@@ -51,7 +51,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-import SearchBox from "@/components/SearchBox";
+
 
 export default function Navbar() {
   const path = usePathname();
