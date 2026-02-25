@@ -360,23 +360,7 @@ export default async function JobPage({ params }) {
           <li>Age limit: {job.age_limit || "As per rules"}</li>
         </ul>
       </section>
-
-      {/* ===========================
-          FULL DESCRIPTION
-      =========================== */}
-      {job.full_desc && (
-        <section className="bg-white border rounded-xl p-6 shadow">
-          <h2 className="text-lg font-semibold mb-4">
-            Job Details
-          </h2>
-
-          <p className="leading-7 text-gray-700 whitespace-pre-line">
-            {job.full_desc}
-          </p>
-        </section>
-      )}
-
-      {/* ===========================
+{/* ===========================
           DYNAMIC TABLE SECTIONS
       =========================== */}
       {job.sections?.map(section => (
@@ -413,6 +397,22 @@ export default async function JobPage({ params }) {
           ))}
         </section>
       ))}
+      {/* ===========================
+          FULL DESCRIPTION
+      =========================== */}
+      {job.full_desc && (
+        <section className="bg-white border rounded-xl p-6 shadow">
+          <h2 className="text-lg font-semibold mb-4">
+            Job Details
+          </h2>
+
+          <p className="leading-7 text-gray-700 whitespace-pre-line">
+            {job.full_desc}
+          </p>
+        </section>
+      )}
+
+      
 
       {/* ===========================
           FAQ (SEO BOOST)

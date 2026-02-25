@@ -252,7 +252,10 @@ export default async function HomePage() {
         </p>
 
         {/* SEARCH */}
-        <HomeSearch />
+          <div className="mt-6 flex flex-col md:flex-row gap-3 justify-center">
+              <HomeSearch />
+          </div>
+        
       </section>
 
       {/* ===========================
