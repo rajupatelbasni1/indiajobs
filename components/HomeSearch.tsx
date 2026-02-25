@@ -1,71 +1,74 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
-import Link from "next/link";
+import { useEffect, useState } from "react";
+
+type Job = {
+  id: number;
+  title: string;
+  slug: string;
+};
 
 export default function HomeSearch() {
-  const [q, setQ] = useState("");
-  const [results, setResults] = useState<any[]>([]);
-  const router = useRouter();
+  const [q, setQ] = useState<string>("");
+  const [results, setResults] = useState<Job[]>([]);
 
   useEffect(() => {
-    if (q.length < 2) {
-      setResults([]);
-      return;
-    }
+    const timer = setTimeout(async () => {
 
-    const delay = setTimeout(async () => {
+      // ❌ yaha setState nahi karna
+      if (q.length < 2) return;
+
       try {
         const res = await fetch(
           `https://indiajobs-2.onrender.com/search/?q=${q}`
         );
-        const data = await res.json();
-        setResults(data);
-      } catch {
-        setResults([]);
-      }
-    }, 300);
 
-    return () => clearTimeout(delay);
+        if (!res.ok) return;
+
+        const data: Job[] = await res.json();
+        setResults(data);
+
+      } catch (e) {
+        console.error(e);
+      }
+
+    }, 400);
+
+    return () => clearTimeout(timer);
+
   }, [q]);
 
-  const handleSearch = () => {
-    if (!q) return;
-    router.push(`/search?q=${q}`);
-  };
-
   return (
-    <div className="mt-6 flex flex-col md:flex-row gap-3 justify-center relative">
+    <div className="relative w-full md:w-96">
 
       {/* INPUT */}
       <input
         value={q}
-        onChange={(e) => setQ(e.target.value)}
+        onChange={(e) => {
+          const value = e.target.value;
+          setQ(value);
+
+          // ✅ clear yaha karna allowed hai
+          if (value.length < 2) setResults([]);
+        }}
         placeholder="Search jobs, departments, exams..."
-        className="border px-5 py-3 rounded w-full md:w-96 text-black"
+        className="border px-5 py-3 rounded w-full text-black"
       />
 
-      {/* BUTTON */}
-      <button
-        onClick={handleSearch}
-        className="bg-black text-white px-6 py-3 rounded"
-      >
-        Search Jobs
-      </button>
-
-      {/* LIVE SUGGESTIONS */}
+      {/* RESULTS */}
       {results.length > 0 && (
-        <div className="absolute top-full mt-1 bg-white border w-full md:w-96 rounded shadow z-50">
+        <div className="absolute bg-white border w-full mt-1 rounded shadow z-50 max-h-72 overflow-y-auto">
+
           {results.map((job) => (
-            <Link
-              key={job.slug}
+            <a
+              key={job.id}
               href={`/jobs/${job.slug}`}
-              className="block p-3 hover:bg-gray-100 text-left"
+              className="block px-4 py-2 hover:bg-gray-100 text-sm"
             >
               {job.title}
-            </Link>
+            </a>
           ))}
+
         </div>
       )}
     </div>
