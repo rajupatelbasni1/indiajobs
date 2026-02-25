@@ -1,49 +1,65 @@
 "use client";
-import { useState, useEffect } from "react";
-import Link from "next/link";
+
+import { useEffect, useState } from "react";
 
 export default function SearchBox() {
   const [q, setQ] = useState("");
   const [results, setResults] = useState([]);
 
   useEffect(() => {
-    if (q.length < 2) {
-      setResults([]);
-      return;
-    }
-
     const delay = setTimeout(async () => {
-      const res = await fetch(
-        `https://indiajobs-2.onrender.com/search/?q=${q}`
-      );
-      const data = await res.json();
-      setResults(data);
-    }, 300);
+
+      // 👇 agar 2 char se kam hai to bas return karo (NO setState here)
+      if (q.length < 2) return;
+
+      try {
+        const res = await fetch(
+          `https://indiajobs-2.onrender.com/search/?q=${q}`
+        );
+
+        if (!res.ok) return;
+
+        const data = await res.json();
+        setResults(data);
+
+      } catch (e) {
+        console.error(e);
+      }
+
+    }, 400);
 
     return () => clearTimeout(delay);
+
   }, [q]);
 
   return (
-    <div className="relative w-full max-w-xl">
+    <div className="relative">
       <input
         value={q}
-        onChange={(e) => setQ(e.target.value)}
-        placeholder="Search govt jobs, railway, police..."
-        className="w-full p-3 border rounded"
+        onChange={(e) => {
+          const val = e.target.value;
+          setQ(val);
+
+          // 👇 input handler me clear karna allowed hai
+          if (val.length < 2) setResults([]);
+        }}
+        placeholder="Search jobs..."
+        className="border px-5 py-3 rounded w-full text-black"
       />
 
-      {/* suggestions */}
       {results.length > 0 && (
-        <div className="absolute bg-white border w-full mt-1 rounded shadow">
+        <div className="absolute bg-white border w-full mt-1 rounded shadow z-50 max-h-64 overflow-y-auto">
+
           {results.map((job) => (
-            <Link
-              key={job.slug}
+            <a
+              key={job.id}
               href={`/jobs/${job.slug}`}
-              className="block p-2 hover:bg-gray-100"
+              className="block px-4 py-2 hover:bg-gray-100 text-sm"
             >
               {job.title}
-            </Link>
+            </a>
           ))}
+
         </div>
       )}
     </div>
