@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://indiajobs-2.onrender.com/sitemap.xml
+Sitemap: https://indiajobs.co/sitemap.xml
