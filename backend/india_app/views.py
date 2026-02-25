@@ -101,6 +101,7 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from django.shortcuts import get_object_or_404
 from .models import Post
+from django.db.models import Q
 
 
 # ===============================
@@ -191,5 +192,29 @@ def post_detail(request, slug):
         "updated_at": post.updated_at.strftime("%d %b %Y"),
         "sections": sections
     }
+
+    return Response(data)
+
+@api_view(["GET"])
+def search_jobs(request):
+    q = request.GET.get("q", "")
+
+    jobs = Post.objects.filter(
+        Q(title__icontains=q) |
+        Q(department__icontains=q) |
+        Q(location__icontains=q) |
+        Q(short_desc__icontains=q)
+    )[:10]
+
+    data = [
+        {
+            "title": j.title,
+            "slug": j.slug,
+            "department": j.department,
+            "location": j.location,
+            "last_date": j.last_date,
+        }
+        for j in jobs
+    ]
 
     return Response(data)

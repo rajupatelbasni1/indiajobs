@@ -206,6 +206,7 @@
 /* ===========================
    FETCH JOBS FROM DJANGO
 =========================== */
+import HomeSearch from "@/components/HomeSearch";
 async function getJobs() {
   try {
     const res = await fetch("https://indiajobs-2.onrender.com/posts/", {
@@ -251,15 +252,7 @@ export default async function HomePage() {
         </p>
 
         {/* SEARCH */}
-        <div className="mt-6 flex flex-col md:flex-row gap-3 justify-center">
-          <input
-            placeholder="Search jobs, departments, exams..."
-            className="border px-5 py-3 rounded w-full md:w-96 text-black"
-          />
-          <button className="bg-black text-white px-6 py-3 rounded">
-            Search Jobs
-          </button>
-        </div>
+        <HomeSearch />
       </section>
 
       {/* ===========================

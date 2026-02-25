@@ -51,6 +51,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
+import SearchBox from "@/components/SearchBox";
 
 export default function Navbar() {
   const path = usePathname();
@@ -78,7 +79,7 @@ export default function Navbar() {
         <Link href="/" className="text-xl font-bold">
           IndiaJobs
         </Link>
-
+      
         {/* Desktop menu */}
         <div className="hidden md:flex gap-2">
           {navItem("/", "Home")}
