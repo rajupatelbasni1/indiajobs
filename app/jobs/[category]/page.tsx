@@ -1,8 +1,18 @@
 type Props = {
-  params: Promise<{ category: string }>
+  params: Promise<{ category: string }>;
 };
 
-async function getJobs(category: string) {
+type Job = {
+  id: number;
+  title: string;
+  slug: string;
+  department?: string;
+  status?: string;
+  last_date?: string;
+  category?: string;
+};
+
+async function getJobs(category: string): Promise<Job[]> {
   const res = await fetch(
     `https://indiajobs-2.onrender.com/posts/category/${category}/`,
     { cache: "no-store" }
@@ -29,7 +39,7 @@ export default async function CategoryPage({ params }: Props) {
       )}
 
       <div className="grid md:grid-cols-2 gap-5">
-        {jobs.map((job: any) => (
+        {jobs.map((job: Job) => (
           <a
             key={job.id}
             href={`/jobs/${job.slug}`}
