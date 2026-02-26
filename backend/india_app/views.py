@@ -225,7 +225,7 @@ def post_list(request):
     category = request.GET.get("category")
 
     if category:
-        posts = Post.objects.filter(category__iexact=category)
+        posts = Post.objects.filter(category__slug__iexact=category)
     else:
         posts = Post.objects.all()
 
@@ -236,7 +236,7 @@ def post_list(request):
             "id": post.id,
             "title": post.title,
             "slug": post.slug,
-            "category": post.category,
+            "category": post.category.slug if post.category else None,
             "department": post.department,
             "created_at": post.created_at,
         })
