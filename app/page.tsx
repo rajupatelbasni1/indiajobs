@@ -206,7 +206,7 @@
 /* ===========================
    FETCH JOBS FROM DJANGO
 =========================== */
-import SocialIcons from "@/components/SocialIcons";
+
 import HomeSearch from "@/components/HomeSearch";
 
 async function getJobs() {

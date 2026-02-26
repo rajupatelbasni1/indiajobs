@@ -5,8 +5,6 @@ type Job = {
   title: string;
   slug: string;
   category: string;
-  department?: string;
-  created_at?: string;
 };
 
 async function getJobs(category: string): Promise<Job[]> {
@@ -24,12 +22,9 @@ async function getJobs(category: string): Promise<Job[]> {
   }
 }
 
-export default async function CategoryPage({
-  params,
-}: {
-  params: { category: string };
-}) {
-
+export default async function CategoryPage(
+  { params }: { params: { category: string } }
+) {
   const category = params.category.toLowerCase();
 
   const jobs = await getJobs(category);
@@ -38,7 +33,6 @@ export default async function CategoryPage({
 
   return (
     <main className="max-w-6xl mx-auto p-6 md:p-10">
-
       <h1 className="text-3xl font-bold mb-6 capitalize">
         {category.replace("-", " ")} Jobs
       </h1>
@@ -60,7 +54,6 @@ export default async function CategoryPage({
           </a>
         ))}
       </div>
-
     </main>
   );
 }
