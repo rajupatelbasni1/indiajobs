@@ -22,12 +22,14 @@ async function getJobs(category: string): Promise<Job[]> {
   }
 }
 
-export default async function CategoryPage(
-  { params }: { params: { category: string } }
-) {
-  const category = params.category.toLowerCase();
+export default async function CategoryPage({
+  params,
+}: {
+  params: Promise<{ category: string }>;
+}) {
+  const { category } = await params;
 
-  const jobs = await getJobs(category);
+  const jobs = await getJobs(category.toLowerCase());
 
   if (!jobs) return notFound();
 
