@@ -206,7 +206,9 @@
 /* ===========================
    FETCH JOBS FROM DJANGO
 =========================== */
+import SocialIcons from "@/components/SocialIcons";
 import HomeSearch from "@/components/HomeSearch";
+
 async function getJobs() {
   try {
     const res = await fetch("https://indiajobs-2.onrender.com/posts/", {
@@ -329,52 +331,6 @@ export default async function HomePage() {
 
         </div>
       </section>
-
-      {/* ===========================
-          WHY CHOOSE US
-      =========================== */}
-      <section className="bg-white mt-16 py-14 px-6">
-        <div className="max-w-5xl mx-auto text-center">
-
-          <h2 className="text-2xl font-bold">Why Choose IndiaJobs?</h2>
-
-          <div className="grid md:grid-cols-3 gap-6 mt-10">
-
-            <div>
-              <h3 className="font-semibold">✔ Daily Updates</h3>
-              <p className="text-gray-600 mt-2">
-                We provide fastest updates on govt & private jobs.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold">✔ All Jobs in One Place</h3>
-              <p className="text-gray-600 mt-2">
-                Admit cards, results, forms, notifications everything available.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-semibold">✔ Easy to Use</h3>
-              <p className="text-gray-600 mt-2">
-                Simple interface for students and job seekers.
-              </p>
-            </div>
-
-          </div>
-
-          <div className="mt-10 text-sm text-gray-600">
-            <a href="/about">About Us </a> |
-            <a href="/contact"> Contact Us</a> |
-            <a href="/disclaimer"> Disclaimer</a> |
-            <a href="/dmca"> DMCA</a> |
-            <a href="/privacy-policy"> Privacy Policy</a>
-            
-          </div>
-
-        </div>
-      </section>
-
     </main>
   );
 }

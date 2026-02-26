@@ -51,6 +51,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
+import SocialIcons from "./SocialIcons";
 
 
 export default function Navbar() {
@@ -110,6 +111,7 @@ export default function Navbar() {
           {navItem("/jobs/govt", "Govt Vacancy")}
           {navItem("/jobs/private", "Private Vacancy")}
           {navItem("/jobs/upcoming", "Upcoming Jobs")}
+          <SocialIcons />
         </div>
       )}
     </nav>
