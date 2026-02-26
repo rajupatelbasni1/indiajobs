@@ -2,7 +2,7 @@ from django.urls import path
 
 
 # from .views import jobs_list , add_job , job_detail
-from .views import latest_posts, post_list, post_detail , search_jobs , post_list
+from .views import latest_posts, post_list, post_detail , search_jobs ,posts_by_category
 
 urlpatterns = [
 
@@ -14,7 +14,7 @@ urlpatterns = [
     path("posts/", post_list),
     path("posts/<slug:slug>/", post_detail),
     path("search/", search_jobs),
-    path("posts/", post_list),
+    path("posts/category/<slug:category_slug>/", posts_by_category),
 ]
 
 

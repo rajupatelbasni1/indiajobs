@@ -221,24 +221,23 @@ def search_jobs(request):
 
     return Response(data)
 
-def post_list(request):
-    category = request.GET.get("category")
-
-    if category:
-        posts = Post.objects.filter(category__slug__iexact=category)
-    else:
-        posts = Post.objects.all()
+@api_view(["GET"])
+def posts_by_category(request, category_slug):
+    posts = Post.objects.filter(
+        category__slug__iexact=category_slug
+    ).order_by("-created_at")
 
     data = []
 
-    for post in posts:
+    for p in posts:
         data.append({
-            "id": post.id,
-            "title": post.title,
-            "slug": post.slug,
-            "category": post.category.slug if post.category else None,
-            "department": post.department,
-            "created_at": post.created_at,
+            "id": p.id,
+            "title": p.title,
+            "slug": p.slug,
+            "department": p.department,
+            "status": p.status,
+            "last_date": p.last_date,
+            "category": p.category.slug if p.category else "",
         })
 
-    return JsonResponse(data, safe=False)
+    return Response(data)
