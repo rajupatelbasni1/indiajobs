@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Script from "next/script";
 import Footer from "@/components/Footer";
+import AutoBreadcrumb from "@/components/AutoBreadcrumb";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -79,6 +80,9 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <Navbar />
+        <div className="max-w-6xl mx-auto px-6 pt-4">
+        <AutoBreadcrumb />
+        </div>
         {children}
         <Footer />
       </body>

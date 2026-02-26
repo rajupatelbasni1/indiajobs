@@ -102,6 +102,8 @@ from rest_framework.response import Response
 from django.shortcuts import get_object_or_404
 from .models import Post
 from django.db.models import Q
+from django.http import JsonResponse
+
 
 
 # ===============================
@@ -218,3 +220,25 @@ def search_jobs(request):
     ]
 
     return Response(data)
+
+def post_list(request):
+    category = request.GET.get("category")
+
+    if category:
+        posts = Post.objects.filter(category__iexact=category)
+    else:
+        posts = Post.objects.all()
+
+    data = []
+
+    for post in posts:
+        data.append({
+            "id": post.id,
+            "title": post.title,
+            "slug": post.slug,
+            "category": post.category,
+            "department": post.department,
+            "created_at": post.created_at,
+        })
+
+    return JsonResponse(data, safe=False)
